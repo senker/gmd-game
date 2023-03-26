@@ -13,3 +13,5 @@ https://assetstore.unity.com/packages/2d/textures-materials/nature/free-pixel-ar
 Tutorials & Guides followed:
 2d Player Movement:
 https://www.youtube.com/watch?v=K1xZ-rycYY8
+Animations:
+https://www.youtube.com/watch?v=GChUpPnOSkg

@@ -8,14 +8,20 @@ public class PlayerMovement : MonoBehaviour
 {
 
     private float _horizontal;
-    private const float Speed = 8f;
+    private const float Speed = 4f;
     private const float JumpingPower = 16f;
     private bool _isFacingRight = true;
 
+    private Animator _anim;
     [SerializeField] private Rigidbody2D rb;
     [SerializeField] private Transform groundCheck;
     [SerializeField] private LayerMask groundLayer;
+    private static readonly int Running = Animator.StringToHash("Running");
 
+    private void Start()
+    {
+        _anim = GetComponent<Animator>();
+    }
 
     // Update is called once per frame
     void Update()
@@ -33,7 +39,9 @@ public class PlayerMovement : MonoBehaviour
             velocity = new Vector2(velocity.x, velocity.y * 0.5f);
             rb.velocity = velocity;
         }
-        
+
+        _anim.SetBool(Running, _horizontal is > 0f or < 0f);
+
         Flip();
     }
 
