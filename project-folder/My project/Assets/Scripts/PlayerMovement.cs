@@ -17,6 +17,8 @@ public class PlayerMovement : MonoBehaviour
     [SerializeField] private Transform groundCheck;
     [SerializeField] private LayerMask groundLayer;
     
+    private enum MovementState { Idle, Running, Jumping, Falling }
+    
     private static readonly int Running = Animator.StringToHash("Running");
 
     private void Start()
