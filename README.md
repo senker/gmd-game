@@ -15,3 +15,4 @@ Tutorials & Guides followed:\
 https://www.youtube.com/watch?v=K1xZ-rycYY8 \
 Animations & MovementController:\
 https://www.youtube.com/watch?v=GChUpPnOSkg 
+https://www.youtube.com/watch?v=65E-q0JxYwU&list=RDCMUC_Fh8kvtkVPkeihBs42jGcA&start_radio=1&t=6s
