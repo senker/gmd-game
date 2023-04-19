@@ -16,6 +16,7 @@ public class PlayerMovement : MonoBehaviour
     [SerializeField] private Rigidbody2D rb;
     [SerializeField] private Transform groundCheck;
     [SerializeField] private LayerMask groundLayer;
+    private static readonly int State = Animator.StringToHash("state");
 
     private enum MovementState { Idle, Running, Jumping, Falling }
 
@@ -67,7 +68,7 @@ public class PlayerMovement : MonoBehaviour
             state = MovementState.Falling;
         }
 
-        _anim.SetInteger("state", (int)state);
+        _anim.SetInteger(State, (int)state);
     }
 
     private bool IsGrounded()
