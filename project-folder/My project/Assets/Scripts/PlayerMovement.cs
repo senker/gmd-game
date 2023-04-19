@@ -16,23 +16,30 @@ public class PlayerMovement : MonoBehaviour
     [SerializeField] private Rigidbody2D rb;
     [SerializeField] private Transform groundCheck;
     [SerializeField] private LayerMask groundLayer;
-    
+
     private enum MovementState { Idle, Running, Jumping, Falling }
-    
-    private static readonly int Running = Animator.StringToHash("Running");
 
     private void Start()
     {
         _anim = GetComponent<Animator>();
+        
     }
-    
+
     void Update()
     {
         _horizontal = Input.GetAxisRaw("Horizontal");
+        UpdateAnimationState();
+        Flip();
+    }
 
+    private void UpdateAnimationState()
+    {
+        MovementState state = MovementState.Idle;
+        
         if (Input.GetButtonDown("Jump") && IsGrounded())
         {
             rb.velocity = new Vector2(rb.velocity.x, JumpingPower);
+            state = MovementState.Jumping;
         }
 
         if (Input.GetButtonUp("Jump") && rb.velocity.y > 0f)
@@ -40,11 +47,27 @@ public class PlayerMovement : MonoBehaviour
             var velocity = rb.velocity;
             velocity = new Vector2(velocity.x, velocity.y * 0.5f);
             rb.velocity = velocity;
+            state = MovementState.Falling;
         }
 
-        _anim.SetBool(Running, _horizontal is > 0f or < 0f);
+        if (_horizontal == 0f && IsGrounded())
+        {
+            state = MovementState.Idle;
+        }
+        else if (IsGrounded())
+        {
+            state = MovementState.Running;
+        }
+        else if (rb.velocity.y > .1f)
+        {
+            state = MovementState.Jumping;
+        }
+        else if (rb.velocity.y < -.1f)
+        {
+            state = MovementState.Falling;
+        }
 
-        Flip();
+        _anim.SetInteger("state", (int)state);
     }
 
     private bool IsGrounded()
