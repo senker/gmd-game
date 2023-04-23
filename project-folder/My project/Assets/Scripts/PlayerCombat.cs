@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -45,20 +46,27 @@ public class PlayerCombat : MonoBehaviour
     {
         // Play an attack animation
         animator.SetTrigger(Attack01);
+        AttackEnemy();
         // Detect enemies in range of attack
         // Apply damage to them
     }
     private void Attack2()
     {
         animator.SetTrigger(Attack02);
+        AttackEnemy();
+
     }
     private void Attack3()
     {
         animator.SetTrigger(Attack03);
+        AttackEnemy();
+
     }
     private void Attack4()
     {
         animator.SetTrigger(Attack04);
+        AttackEnemy();
+
     }
 
     private void AttackEnemy()
@@ -69,5 +77,13 @@ public class PlayerCombat : MonoBehaviour
         {
             Debug.Log("We hit " + enemy.name);
         }
+    }
+
+    private void OnDrawGizmosSelected()
+    {
+        if (attackPoint == null)
+            return;
+        
+        Gizmos.DrawWireSphere(attackPoint.position, attackRange);
     }
 }
