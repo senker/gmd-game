@@ -17,4 +17,6 @@ Animations & MovementController:\
 https://www.youtube.com/watch?v=GChUpPnOSkg \
 https://www.youtube.com/watch?v=65E-q0JxYwU&list=RDCMUC_Fh8kvtkVPkeihBs42jGcA&start_radio=1&t=6s \
 Parallax effect:\
-https://www.youtube.com/watch?v=zit45k6CUMk
+https://www.youtube.com/watch?v=zit45k6CUMk \
+Enemy damage:\
+https://www.youtube.com/watch?v=sPiVz1k-fEs
