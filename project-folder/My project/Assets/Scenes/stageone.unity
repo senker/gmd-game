@@ -1083,7 +1083,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 737192195}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: Enemies
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -2360,11 +2360,12 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   animator: {fileID: 1302948431}
-  attackPoint: {fileID: 723607323}
-  attackRange: 0.5
   enemyLayers:
     serializedVersion: 2
-    m_Bits: 0
+    m_Bits: 128
+  attackPoint: {fileID: 723607323}
+  attackRange: 0.5
+  attackDamage: 40
 --- !u!1 &1310425975
 GameObject:
   m_ObjectHideFlags: 0
@@ -3068,7 +3069,8 @@ GameObject:
   - component: {fileID: 1511046394}
   - component: {fileID: 1511046395}
   - component: {fileID: 1511046396}
-  m_Layer: 0
+  - component: {fileID: 1511046397}
+  m_Layer: 7
   m_Name: Enemy01
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -3209,6 +3211,19 @@ BoxCollider2D:
   serializedVersion: 2
   m_Size: {x: 0.1653471, y: 0.35656926}
   m_EdgeRadius: 0
+--- !u!114 &1511046397
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1511046391}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9e381028468c63b4091728d23db1f7fd, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  maxHealth: 100
 --- !u!1 &1548085325
 GameObject:
   m_ObjectHideFlags: 0

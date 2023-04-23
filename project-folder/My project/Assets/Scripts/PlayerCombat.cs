@@ -6,18 +6,25 @@ using UnityEngine.Timeline;
 
 public class PlayerCombat : MonoBehaviour
 {
-
     public Animator animator;
 
-    public Transform attackPoint;
-    public float attackRange = 0.5f;
     public LayerMask enemyLayers;
-    
+    public Transform attackPoint;
+
+    public float attackRange = 0.5f;
+    public int attackDamage = 40;
+
     private static readonly int Attack01 = Animator.StringToHash("Attack1");
     private static readonly int Attack02 = Animator.StringToHash("Attack2");
     private static readonly int Attack03 = Animator.StringToHash("Attack3");
     private static readonly int Attack04 = Animator.StringToHash("Attack4");
 
+
+    void Start()
+    {
+        
+    }
+    
     // Update is called once per frame
     void Update()
     {
@@ -75,7 +82,7 @@ public class PlayerCombat : MonoBehaviour
 
         foreach (Collider2D enemy in hitEnemies)
         {
-            Debug.Log("We hit " + enemy.name);
+            enemy.GetComponent<Enemy>().TakeDamage(attackDamage);
         }
     }
 
