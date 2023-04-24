@@ -3223,6 +3223,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9e381028468c63b4091728d23db1f7fd, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  animator: {fileID: 1511046394}
   maxHealth: 100
 --- !u!1 &1548085325
 GameObject:
