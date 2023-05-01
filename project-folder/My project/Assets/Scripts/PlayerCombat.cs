@@ -14,11 +14,15 @@ public class PlayerCombat : MonoBehaviour
     public float attackRange = 0.5f;
     public int attackDamage = 40;
 
+    public float attackRate = 2f;
+    float nextAttackTime = 0f;
+
     private static readonly int Attack01 = Animator.StringToHash("Attack1");
     private static readonly int Attack02 = Animator.StringToHash("Attack2");
     private static readonly int Attack03 = Animator.StringToHash("Attack3");
     private static readonly int Attack04 = Animator.StringToHash("Attack4");
 
+    
 
     void Start()
     {
@@ -28,22 +32,28 @@ public class PlayerCombat : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (Input.GetKeyDown(KeyCode.Alpha1))
+        if (Time.time >= nextAttackTime)
         {
-            Attack1();
-        }
-        else if (Input.GetKeyDown(KeyCode.Alpha2))
-        {
-            Attack2();
-
-        }
-        else if (Input.GetKeyDown(KeyCode.Alpha3))
-        {
-            Attack3();
-        }
-        else if (Input.GetKeyDown(KeyCode.Alpha4))
-        {
-            Attack4();
+            if (Input.GetKeyDown(KeyCode.Alpha1))
+            {
+                Attack1();
+                nextAttackTime = Time.time + 1f / attackRate;
+            }
+            else if (Input.GetKeyDown(KeyCode.Alpha2))
+            {
+                Attack2();
+                nextAttackTime = Time.time + 1f / attackRate;
+            }
+            else if (Input.GetKeyDown(KeyCode.Alpha3))
+            {
+                Attack3();
+                nextAttackTime = Time.time + 1f / attackRate;
+            }
+            else if (Input.GetKeyDown(KeyCode.Alpha4))
+            {
+                Attack4();
+                nextAttackTime = Time.time + 1f / attackRate;
+            }
         }
     }
 
