@@ -19,4 +19,6 @@ https://www.youtube.com/watch?v=65E-q0JxYwU&list=RDCMUC_Fh8kvtkVPkeihBs42jGcA&st
 Parallax effect:\
 https://www.youtube.com/watch?v=zit45k6CUMk \
 Enemy damage:\
-https://www.youtube.com/watch?v=sPiVz1k-fEs
+https://www.youtube.com/watch?v=sPiVz1k-fEs \
+Char death:\
+https://www.youtube.com/watch?v=ynH51MiKutY&list=PLrnPJCHvNZuCVTz6lvhR81nnaf1a-b67U&index=9 \
