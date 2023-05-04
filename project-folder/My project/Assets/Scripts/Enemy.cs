@@ -70,10 +70,12 @@ public class Enemy : MonoBehaviour
     {
         // Die anim
         animator.SetBool(IsDead, true);
-        
         // Disable the enemy
         _rb.isKinematic = true;
+        enabled = false;
+
         _col.enabled = false;
-        this.enabled = false;
+
+        
     }
 }
