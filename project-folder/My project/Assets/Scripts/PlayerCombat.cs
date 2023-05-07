@@ -21,13 +21,7 @@ public class PlayerCombat : MonoBehaviour
     private static readonly int Attack02 = Animator.StringToHash("Attack2");
     private static readonly int Attack03 = Animator.StringToHash("Attack3");
     private static readonly int Attack04 = Animator.StringToHash("Attack4");
-
     
-
-    void Start()
-    {
-        
-    }
     
     // Update is called once per frame
     void Update()

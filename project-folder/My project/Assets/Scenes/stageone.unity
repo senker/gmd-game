@@ -2734,10 +2734,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c28d2975814675445922ee5b9be91ddf, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  player: {fileID: 0}
+  player: {fileID: 1302948425}
   target: {fileID: 1302948430}
   enemyGfx: {fileID: 1407000284}
-  animator: {fileID: 0}
+  animator: {fileID: 1407000287}
   knockbackForce: 10
   speed: 9750
   nextWaypointDistance: 0.5
