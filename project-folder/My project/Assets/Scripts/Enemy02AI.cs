@@ -3,46 +3,45 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using Pathfinding;
+using UnityEngine.Serialization;
 
 public class Enemy02AI : MonoBehaviour
 {
-
     public Transform target;
-
-    public Transform enemyGFX;
+    [FormerlySerializedAs("enemyGFX")] public Transform enemyGfx;
     
     public float speed = 200f;
     public float nextWaypointDistance = 3f;
 
-    private Path path;
-    private int currentWaypoint = 0;
-    private bool reachedEndOfPath = false;
+    private Path _path;
+    private int _currentWaypoint = 0;
+    [SerializeField] private bool _reachedEndOfPath = false;
 
-    private Seeker seeker;
-    private Rigidbody2D rb;
+    private Seeker _seeker;
+    private Rigidbody2D _rb;
     
     // Start is called before the first frame update
     void Start()
     {
-        seeker = GetComponent<Seeker>();
-        rb = GetComponent<Rigidbody2D>();
+        _seeker = GetComponent<Seeker>();
+        _rb = GetComponent<Rigidbody2D>();
         
-        InvokeRepeating("UpdatePath", 0f, .5f);
+        InvokeRepeating(nameof(UpdatePath), 0f, .5f);
     }
 
+    // ReSharper disable Unity.PerformanceAnalysis
     void UpdatePath()
     {
-        if (seeker.IsDone())
-            seeker.StartPath(rb.position, target.position, OnPathComplete);
-
+        if (_seeker.IsDone())
+            _seeker.StartPath(_rb.position, target.position, OnPathComplete);
     }
     
     void OnPathComplete(Path p)
     {
         if (!p.error)
         {
-            path = p;
-            currentWaypoint = 0;
+            _path = p;
+            _currentWaypoint = 0;
         }
     }
 
@@ -53,38 +52,38 @@ public class Enemy02AI : MonoBehaviour
 
     void FixedUpdate()
     {
-        if (path == null)
+        if (_path == null)
             return;
 
-        if (currentWaypoint >= path.vectorPath.Count)
+        if (_currentWaypoint >= _path.vectorPath.Count)
         {
-            reachedEndOfPath = true;
+            _reachedEndOfPath = true;
             return;
         }
         else
         {
-            reachedEndOfPath = false;
+            _reachedEndOfPath = false;
         }
 
-        Vector2 direction = ((Vector2)path.vectorPath[currentWaypoint] - rb.position).normalized;
-        Vector2 force = direction * speed * Time.deltaTime;
+        Vector2 direction = ((Vector2)_path.vectorPath[_currentWaypoint] - _rb.position).normalized;
+        Vector2 force = direction * (speed * Time.deltaTime);
         
-        rb.AddForce(force);
+        _rb.AddForce(force);
 
-        float distance = Vector2.Distance(rb.position, path.vectorPath[currentWaypoint]);
+        float distance = Vector2.Distance(_rb.position, _path.vectorPath[_currentWaypoint]);
 
         if (distance < nextWaypointDistance)
         {
-            currentWaypoint++;
+            _currentWaypoint++;
         }
 
         if (force.x >= 0.01f)
         {
-            enemyGFX.localScale = new Vector3(-1f, 1f, 1f);
+            enemyGfx.localScale = new Vector3(-1f, 1f, 1f);
         }
         else if (force.x <= -0.01f)
         {
-            enemyGFX.localScale = new Vector3(1f, 1f, 1f);
+            enemyGfx.localScale = new Vector3(1f, 1f, 1f);
         }
     }
 }
