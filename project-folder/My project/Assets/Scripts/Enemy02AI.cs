@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -44,8 +45,12 @@ public class Enemy02AI : MonoBehaviour
             currentWaypoint = 0;
         }
     }
-    
-    // Update is called once per frame
+
+    private void Update()
+    {
+
+    }
+
     void FixedUpdate()
     {
         if (path == null)
@@ -73,13 +78,13 @@ public class Enemy02AI : MonoBehaviour
             currentWaypoint++;
         }
 
-        /*if (rb.velocity.x >= 0.01f)
+        if (force.x >= 0.01f)
         {
-            enemyGFX.localScale = new Vector3(-2f, 2f, 1f);
+            enemyGFX.localScale = new Vector3(-1f, 1f, 1f);
         }
-        else if (rb.velocity.x <= -0.01f)
+        else if (force.x <= -0.01f)
         {
-            transform.localScale = new Vector3(2f, 2f, 1f);
-        }*/
+            enemyGFX.localScale = new Vector3(1f, 1f, 1f);
+        }
     }
 }
