@@ -10,6 +10,7 @@ public class Enemy : MonoBehaviour
     private Rigidbody2D _rb;
     private Collider2D _col;
     
+    [SerializeField] private float knockbackForce = 10f;
     private float lastMovement;
     public int maxHealth = 100;
     int _currentHealth;
@@ -56,13 +57,23 @@ public class Enemy : MonoBehaviour
     public void TakeDamage(int damage)
     {
         _currentHealth -= damage;
-        // Play hurt animation
-        
         animator.SetTrigger(Hurt);
+        
         
         if (_currentHealth <= 0)
         {
                 Die();
+        }
+        else
+        {
+            // Calculate the knockback direction based on the direction from the player to the enemy
+            Vector2 knockbackDirection = transform.position - player.transform.position;
+
+            // Normalize the direction to get a unit vector
+            knockbackDirection.Normalize();
+
+            // Apply the knockback force in the calculated direction
+            _rb.AddForce(knockbackDirection * knockbackForce, ForceMode2D.Impulse);
         }
     }
 
