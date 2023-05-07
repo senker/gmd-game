@@ -25,4 +25,6 @@ https://www.youtube.com/watch?v=ynH51MiKutY&list=PLrnPJCHvNZuCVTz6lvhR81nnaf1a-b
 Enemy follow:\
 https://www.youtube.com/shorts/eZBm-VNAYDA \
 Menu: \
-https://www.youtube.com/watch?v=OLbWB1R095s&list=PLrnPJCHvNZuCVTz6lvhR81nnaf1a-b67U&index=14&ab_channel=CodinginFlow
+https://www.youtube.com/watch?v=OLbWB1R095s&list=PLrnPJCHvNZuCVTz6lvhR81nnaf1a-b67U&index=14&ab_channel=CodinginFlow \
+Enemy AI: \
+https://www.youtube.com/watch?v=jvtFUfJ6CP8&t=1198s
