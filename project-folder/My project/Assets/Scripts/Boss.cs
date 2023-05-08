@@ -11,7 +11,6 @@ public class Boss : MonoBehaviour
     private Collider2D _col;
     public Transform attackPoint;
     public float attackRange = 0.5f;
-    public int attackDamage = 40;
     private bool isAttacking = false; 
     [SerializeField] private AudioSource enemyDieSoundEffect;
 
@@ -36,17 +35,15 @@ public class Boss : MonoBehaviour
         Vector3 scale = transform.localScale;
         MovementState state = MovementState.Idle;
 
-        if (!isAttacking) // Only move if not attacking
+        if (!isAttacking) 
         {
-            
-           // float xOffset = 0.9f; // Adjust this value based on the actual offset
-            if (player.transform.position.x > transform.position.x + 0.6f/*+ xOffset*/)
+            if (player.transform.position.x > transform.position.x + 0.6f)
             {
                 scale.x = Mathf.Abs(scale.x) * -1 * (flip ? -1 : 1);
                 transform.Translate(speed * Time.deltaTime, 0, 0);
                 state = MovementState.Running;
             }
-            else if (player.transform.position.x < transform.position.x - 0.6f/*+*/ /*xOffset*/)
+            else if (player.transform.position.x < transform.position.x - 0.6f)
             {
                 scale.x = Mathf.Abs(scale.x) * (flip ? -1 : 1);
                 transform.Translate(speed * Time.deltaTime * -1, 0, 0);
@@ -95,22 +92,15 @@ public class Boss : MonoBehaviour
         }
         else
         {
-            // Calculate the knockback direction based on the direction from the player to the enemy
             Vector2 knockbackDirection = transform.position - player.transform.position;
-
-            // Normalize the direction to get a unit vector
             knockbackDirection.Normalize();
-
-            // Apply the knockback force in the calculated direction
             _rb.AddForce(knockbackDirection * knockbackForce, ForceMode2D.Impulse);
         }
     }
 
     private void Die()
     {
-        // Die anim
         animator.SetBool(IsDead, true);
-        // Disable the enemy
         _rb.isKinematic = true;
         enabled = false;
         _col.enabled = false;
@@ -130,7 +120,6 @@ public class Boss : MonoBehaviour
     {
         yield return new WaitForSeconds(1.0f); // Delay the attack by 1 second
 
-        // Check if the player is within range
         Collider2D[] hitColliders = Physics2D.OverlapCircleAll(attackPoint.position, attackRange);
         foreach (Collider2D hitCollider in hitColliders)
         {
@@ -138,15 +127,14 @@ public class Boss : MonoBehaviour
             {
                 hitCollider.gameObject.GetComponent<PlayerLife>().Die();
 
-                // Apply knockback force to the player
                 Vector2 knockbackDirection = hitCollider.transform.position - transform.position;
                 knockbackDirection.Normalize();
                 hitCollider.gameObject.GetComponent<Rigidbody2D>().AddForce(knockbackDirection * 0.1f, ForceMode2D.Impulse);
             }
         }
 
-        yield return new WaitForSeconds(3.0f); // Wait for 3 seconds before attacking again
-        isAttacking = false; // Reset the flag after attacking
+        yield return new WaitForSeconds(3.0f); 
+        isAttacking = false; 
     }
 }
 

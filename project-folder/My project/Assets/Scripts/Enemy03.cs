@@ -11,7 +11,6 @@ public class Enemy03 : MonoBehaviour
     private Collider2D _col;
     public Transform attackPoint;
     public float attackRange = 0.5f;
-    public int attackDamage = 40;
     private bool isAttacking = false; 
     [SerializeField] private AudioSource enemyDieSoundEffect;
 
@@ -37,7 +36,7 @@ public class Enemy03 : MonoBehaviour
         Vector3 scale = transform.localScale;
         MovementState state = MovementState.Idle;
 
-        if (!isAttacking) // Only move if not attacking
+        if (!isAttacking) 
         {
             if (player.transform.position.x > transform.position.x)
             {
@@ -55,10 +54,8 @@ public class Enemy03 : MonoBehaviour
 
         if (Vector2.Distance(transform.position, player.transform.position) <= attackRange && !isAttacking)
         {
-            // Attack the player
-            isAttacking = true; // Set the flag to true before attacking
+            isAttacking = true; 
     
-            // Randomly select the attack animation
             int attackIndex = UnityEngine.Random.Range(1, 3);
             int attackTrigger = (attackIndex == 1) ? Attack01 : Attack02;
     
@@ -71,7 +68,6 @@ public class Enemy03 : MonoBehaviour
     }
 
     
-    // Start is called before the first frame update
     void Start()
     {
         _rb = GetComponent<Rigidbody2D>();
@@ -91,22 +87,15 @@ public class Enemy03 : MonoBehaviour
         }
         else
         {
-            // Calculate the knockback direction based on the direction from the player to the enemy
             Vector2 knockbackDirection = transform.position - player.transform.position;
-
-            // Normalize the direction to get a unit vector
             knockbackDirection.Normalize();
-
-            // Apply the knockback force in the calculated direction
             _rb.AddForce(knockbackDirection * knockbackForce, ForceMode2D.Impulse);
         }
     }
 
     private void Die()
     {
-        // Die anim
         animator.SetBool(IsDead, true);
-        // Disable the enemy
         _rb.isKinematic = true;
         enabled = false;
         _col.enabled = false;
@@ -124,24 +113,20 @@ public class Enemy03 : MonoBehaviour
 
     private IEnumerator AttackPlayer()
     {
-        yield return new WaitForSeconds(1.0f); // Delay the attack by 1 second
-
-        // Check if the player is within range
+        yield return new WaitForSeconds(1.0f);
         Collider2D[] hitColliders = Physics2D.OverlapCircleAll(attackPoint.position, attackRange);
         foreach (Collider2D hitCollider in hitColliders)
         {
             if (hitCollider.gameObject.CompareTag("Player"))
             {
                 hitCollider.gameObject.GetComponent<PlayerLife>().Die();
-
-                // Apply knockback force to the player
                 Vector2 knockbackDirection = hitCollider.transform.position - transform.position;
                 knockbackDirection.Normalize();
                 hitCollider.gameObject.GetComponent<Rigidbody2D>().AddForce(knockbackDirection * 0.1f, ForceMode2D.Impulse);
             }
         }
 
-        yield return new WaitForSeconds(3.0f); // Wait for 3 seconds before attacking again
-        isAttacking = false; // Reset the flag after attacking
+        yield return new WaitForSeconds(3.0f); 
+        isAttacking = false; 
     }
 }

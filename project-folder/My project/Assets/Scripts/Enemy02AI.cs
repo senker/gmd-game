@@ -20,7 +20,6 @@ public class Enemy02AI : MonoBehaviour
     private Seeker _seeker;
     private Rigidbody2D _rb;
     
-    // Start is called before the first frame update
     void Start()
     {
         _seeker = GetComponent<Seeker>();
@@ -29,7 +28,6 @@ public class Enemy02AI : MonoBehaviour
         InvokeRepeating(nameof(UpdatePath), 0f, .5f);
     }
 
-    // ReSharper disable Unity.PerformanceAnalysis
     void UpdatePath()
     {
         if (_seeker.IsDone())

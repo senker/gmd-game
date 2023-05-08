@@ -48,7 +48,6 @@ public class Enemy : MonoBehaviour
     }
 
     
-    // Start is called before the first frame update
     void Start()
     {
         _rb = GetComponent<Rigidbody2D>();
@@ -68,27 +67,18 @@ public class Enemy : MonoBehaviour
         }
         else
         {
-            // Calculate the knockback direction based on the direction from the player to the enemy
             Vector2 knockbackDirection = transform.position - player.transform.position;
-
-            // Normalize the direction to get a unit vector
             knockbackDirection.Normalize();
-
-            // Apply the knockback force in the calculated direction
             _rb.AddForce(knockbackDirection * knockbackForce, ForceMode2D.Impulse);
         }
     }
 
     private void Die()
     {
-        // Die anim
         animator.SetBool(IsDead, true);
-        // Disable the enemy
         _rb.isKinematic = true;
         enabled = false;
         enemyDieSoundEffect.Play();
         _col.enabled = false;
-
-        
     }
 }

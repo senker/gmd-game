@@ -7,7 +7,6 @@ using UnityEngine.SceneManagement;
 public class Finish : MonoBehaviour
 {
     private AudioSource finishSound;
-    // Start is called before the first frame update
     private void Start()
     {
         finishSound = GetComponent<AudioSource>();

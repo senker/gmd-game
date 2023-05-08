@@ -58,37 +58,27 @@ public class PlayerCombat : MonoBehaviour
 
     private void Attack1()
     {
-        // Play an attack animation
         animator.SetTrigger(Attack01);
         AttackEnemy();
         hitSoundEffect.Play();
-
-        // Detect enemies in range of attack
-        // Apply damage to them
     }
     private void Attack2()
     {
         animator.SetTrigger(Attack02);
         AttackEnemy();
         hitSoundEffect.Play();
-
-
     }
     private void Attack3()
     {
         animator.SetTrigger(Attack03);
         AttackEnemy();
         hitSoundEffect.Play();
-
-
     }
     private void Attack4()
     {
         animator.SetTrigger(Attack04);
         AttackEnemy();
         hitSoundEffect.Play();
-
-
     }
 
     private void AttackEnemy()
