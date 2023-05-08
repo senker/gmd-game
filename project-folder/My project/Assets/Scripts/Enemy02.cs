@@ -18,6 +18,7 @@ public class Enemy02 : MonoBehaviour
 
     private static readonly int IsDead = Animator.StringToHash("IsDead");
     private static readonly int Hurt = Animator.StringToHash("Hurt");
+    [SerializeField] private AudioSource enemyDieSoundEffect;
 
     // Start is called before the first frame update
     void Start()
@@ -60,5 +61,6 @@ public class Enemy02 : MonoBehaviour
         enabled = false;
         target.enabled = false;
         _col.enabled = false;
+        enemyDieSoundEffect.Play();
     }
 }

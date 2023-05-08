@@ -10,8 +10,11 @@ EditorBuildSettings:
     guid: 2cda990e2423bbf4892e6590ba056729
   - enabled: 1
     path: Assets/Scenes/Start Screen.unity
-    guid: 0107f93ccaa64344cab5d7d820b15d38
+    guid: 07c5cd00a3dac4a4d9b0f4e22affce93
   - enabled: 1
     path: Assets/Scenes/stageone.unity
     guid: b3a11fd22b90f1e478bda9e6928543cb
+  - enabled: 1
+    path: Assets/Scenes/End Screen.unity
+    guid: 0107f93ccaa64344cab5d7d820b15d38
   m_configObjects: {}

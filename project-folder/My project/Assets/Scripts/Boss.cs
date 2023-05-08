@@ -13,7 +13,8 @@ public class Boss : MonoBehaviour
     public float attackRange = 0.5f;
     public int attackDamage = 40;
     private bool isAttacking = false; 
-    
+    [SerializeField] private AudioSource enemyDieSoundEffect;
+
     [SerializeField] private float knockbackForce = 10f;
     private float lastMovement;
     public int maxHealth = 100;
@@ -113,6 +114,7 @@ public class Boss : MonoBehaviour
         _rb.isKinematic = true;
         enabled = false;
         _col.enabled = false;
+        enemyDieSoundEffect.Play();
     }
     
     private void OnDrawGizmosSelected()

@@ -11,6 +11,8 @@ public class Enemy : MonoBehaviour
     private Collider2D _col;
     
     [SerializeField] private float knockbackForce = 10f;
+    [SerializeField] private AudioSource enemyDieSoundEffect;
+
     private float lastMovement;
     public int maxHealth = 100;
     int _currentHealth;
@@ -84,7 +86,7 @@ public class Enemy : MonoBehaviour
         // Disable the enemy
         _rb.isKinematic = true;
         enabled = false;
-
+        enemyDieSoundEffect.Play();
         _col.enabled = false;
 
         

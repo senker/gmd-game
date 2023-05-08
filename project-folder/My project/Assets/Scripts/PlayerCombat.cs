@@ -16,6 +16,8 @@ public class PlayerCombat : MonoBehaviour
 
     public float attackRate = 2f;
     float nextAttackTime = 0f;
+    [SerializeField] private AudioSource hitSoundEffect;
+
 
     private static readonly int Attack01 = Animator.StringToHash("Attack1");
     private static readonly int Attack02 = Animator.StringToHash("Attack2");
@@ -32,6 +34,7 @@ public class PlayerCombat : MonoBehaviour
             {
                 Attack1();
                 nextAttackTime = Time.time + 1f / attackRate;
+                
             }
             else if (Input.GetKeyDown(KeyCode.Alpha2))
             {
@@ -58,6 +61,8 @@ public class PlayerCombat : MonoBehaviour
         // Play an attack animation
         animator.SetTrigger(Attack01);
         AttackEnemy();
+        hitSoundEffect.Play();
+
         // Detect enemies in range of attack
         // Apply damage to them
     }
@@ -65,25 +70,30 @@ public class PlayerCombat : MonoBehaviour
     {
         animator.SetTrigger(Attack02);
         AttackEnemy();
+        hitSoundEffect.Play();
+
 
     }
     private void Attack3()
     {
         animator.SetTrigger(Attack03);
         AttackEnemy();
+        hitSoundEffect.Play();
+
 
     }
     private void Attack4()
     {
         animator.SetTrigger(Attack04);
         AttackEnemy();
+        hitSoundEffect.Play();
+
 
     }
 
     private void AttackEnemy()
     {
         Collider2D[] hitEnemies = Physics2D.OverlapCircleAll(attackPoint.position, attackRange, enemyLayers);
-
         foreach (Collider2D enemy in hitEnemies)
         {
             Debug.Log("We hit " + enemy.name);

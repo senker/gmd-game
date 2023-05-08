@@ -16,6 +16,7 @@ public class PlayerMovement : MonoBehaviour
     [SerializeField] private Rigidbody2D rb;
     [SerializeField] private Transform groundCheck;
     [SerializeField] private LayerMask groundLayer;
+    [SerializeField] private AudioSource jumpSoundEffect;
     private static readonly int State = Animator.StringToHash("state");
 
     private enum MovementState { Idle, Running, Jumping, Falling }
@@ -41,6 +42,8 @@ public class PlayerMovement : MonoBehaviour
         {
             rb.velocity = new Vector2(rb.velocity.x, JumpingPower);
             state = MovementState.Jumping;
+            jumpSoundEffect.Play();
+
         }
 
         if (Input.GetButtonUp("Jump") && rb.velocity.y > 0f)
