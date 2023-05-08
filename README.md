@@ -1,6 +1,10 @@
-# gmd-game
+# gmd-game developed by Vladimir Rotaru (266914)
 Game developed for GMD course at VIA UC using Unity
 
+Link to youtube video:
+https://www.youtube.com/watch?v=ZFgRFKAdlgI
+Link to a playable WebGL build of the game, hosted on GitHub Pages
+https://senker.github.io/gmd-game/
 
 Assets used from the asset store:\
 Pixel Art Platformer - Village Props\
