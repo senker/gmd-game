@@ -14,7 +14,11 @@ https://assetstore.unity.com/packages/2d/characters/bringer-of-death-free-195719
 Princess\
 https://assetstore.unity.com/packages/2d/characters/2d-animated-fantasy-knight-dragon-and-princess-pack-35605
 Monsters_Creatures_Fantasy\
-https://assetstore.unity.com/packages/2d/characters/monsters-creatures-fantasy-167949
+https://assetstore.unity.com/packages/2d/characters/monsters-creatures-fantasy-167949 \
+BG Music:\
+https://assetstore.unity.com/packages/audio/ambient/nature/nature-essentials-208227 \
+Effects:\
+https://assetstore.unity.com/packages/audio/sound-fx/rpg-essentials-sound-effects-free-227708
 
 Tutorials & Guides followed:\
 2d Player Movement:\
