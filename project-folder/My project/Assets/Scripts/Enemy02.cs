@@ -9,6 +9,7 @@ public class Enemy02 : MonoBehaviour
     public Animator animator;
     private Rigidbody2D _rb;
     private Collider2D _col;
+    public Enemy02AI target;
     
     [SerializeField] private float knockbackForce = 10f;
     private float lastMovement;
@@ -54,8 +55,10 @@ public class Enemy02 : MonoBehaviour
         // Die anim
         animator.SetBool(IsDead, true);
         // Disable the enemy
-        _rb.isKinematic = true;
+        _rb.bodyType = RigidbodyType2D.Static;
+        _rb.gravityScale = 100;
         enabled = false;
+        target.enabled = false;
         _col.enabled = false;
     }
 }
