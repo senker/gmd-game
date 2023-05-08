@@ -97,6 +97,11 @@ public class PlayerCombat : MonoBehaviour
             {
                 enemy02Component.TakeDamage(attackDamage);
             }
+            Enemy03 enemy03Component = enemy.GetComponent<Enemy03>();
+            if (enemy03Component != null)
+            {
+                enemy03Component.TakeDamage(attackDamage);
+            }
         }
     }
 
