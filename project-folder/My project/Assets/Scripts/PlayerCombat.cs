@@ -102,6 +102,11 @@ public class PlayerCombat : MonoBehaviour
             {
                 enemy03Component.TakeDamage(attackDamage);
             }
+            Boss boss = enemy.GetComponent<Boss>();
+            if (boss != null)
+            {
+                boss.TakeDamage(attackDamage);
+            }
         }
     }
 

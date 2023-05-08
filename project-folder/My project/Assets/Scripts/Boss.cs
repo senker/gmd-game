@@ -3,7 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Enemy03 : MonoBehaviour
+public class Boss : MonoBehaviour
 {
     public GameObject player;
     public Animator animator;
@@ -37,13 +37,15 @@ public class Enemy03 : MonoBehaviour
 
         if (!isAttacking) // Only move if not attacking
         {
-            if (player.transform.position.x > transform.position.x)
+            
+           // float xOffset = 0.9f; // Adjust this value based on the actual offset
+            if (player.transform.position.x > transform.position.x + 0.6f/*+ xOffset*/)
             {
                 scale.x = Mathf.Abs(scale.x) * -1 * (flip ? -1 : 1);
                 transform.Translate(speed * Time.deltaTime, 0, 0);
                 state = MovementState.Running;
             }
-            else if (player.transform.position.x < transform.position.x)
+            else if (player.transform.position.x < transform.position.x - 0.6f/*+*/ /*xOffset*/)
             {
                 scale.x = Mathf.Abs(scale.x) * (flip ? -1 : 1);
                 transform.Translate(speed * Time.deltaTime * -1, 0, 0);
@@ -55,12 +57,15 @@ public class Enemy03 : MonoBehaviour
         {
             // Attack the player
             isAttacking = true; // Set the flag to true before attacking
-    
-            // Randomly select the attack animation
-            int attackIndex = UnityEngine.Random.Range(1, 3);
-            int attackTrigger = (attackIndex == 1) ? Attack01 : Attack02;
-    
-            animator.SetTrigger(attackTrigger);
+            if (_currentHealth >= 200)
+            {
+                animator.SetTrigger(Attack01);
+            }
+            else
+            {
+                animator.SetTrigger(Attack02);
+
+            }
             StartCoroutine(AttackPlayer());
         }
 
@@ -142,3 +147,5 @@ public class Enemy03 : MonoBehaviour
         isAttacking = false; // Reset the flag after attacking
     }
 }
+
+
