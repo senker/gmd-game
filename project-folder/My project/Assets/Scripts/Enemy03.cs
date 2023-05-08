@@ -9,6 +9,10 @@ public class Enemy03 : MonoBehaviour
     public Animator animator;
     private Rigidbody2D _rb;
     private Collider2D _col;
+    public Transform attackPoint;
+    public float attackRange = 0.5f;
+    public int attackDamage = 40;
+    private bool isAttacking = false; 
     
     [SerializeField] private float knockbackForce = 10f;
     private float lastMovement;
@@ -20,6 +24,9 @@ public class Enemy03 : MonoBehaviour
     private static readonly int IsDead = Animator.StringToHash("IsDead");
     private static readonly int Hurt = Animator.StringToHash("Hurt");
     private static readonly int State = Animator.StringToHash("state");
+    private static readonly int Attack01 = Animator.StringToHash("Attack1");
+    private static readonly int Attack02 = Animator.StringToHash("Attack2");
+    
     
     private enum MovementState { Idle, Running }
     
@@ -27,18 +34,34 @@ public class Enemy03 : MonoBehaviour
     {
         Vector3 scale = transform.localScale;
         MovementState state = MovementState.Idle;
-    
-        if (player.transform.position.x > transform.position.x)
+
+        if (!isAttacking) // Only move if not attacking
         {
-            scale.x = Mathf.Abs(scale.x) * -1 * (flip ? -1 : 1);
-            transform.Translate(speed * Time.deltaTime, 0, 0);
-            state = MovementState.Running;
+            if (player.transform.position.x > transform.position.x)
+            {
+                scale.x = Mathf.Abs(scale.x) * -1 * (flip ? -1 : 1);
+                transform.Translate(speed * Time.deltaTime, 0, 0);
+                state = MovementState.Running;
+            }
+            else if (player.transform.position.x < transform.position.x)
+            {
+                scale.x = Mathf.Abs(scale.x) * (flip ? -1 : 1);
+                transform.Translate(speed * Time.deltaTime * -1, 0, 0);
+                state = MovementState.Running;
+            }
         }
-        else if (player.transform.position.x < transform.position.x)
+
+        if (Vector2.Distance(transform.position, player.transform.position) <= attackRange && !isAttacking)
         {
-            scale.x = Mathf.Abs(scale.x) * (flip ? -1 : 1);
-            transform.Translate(speed * Time.deltaTime * -1, 0, 0);
-            state = MovementState.Running;
+            // Attack the player
+            isAttacking = true; // Set the flag to true before attacking
+    
+            // Randomly select the attack animation
+            int attackIndex = UnityEngine.Random.Range(1, 3);
+            int attackTrigger = (attackIndex == 1) ? Attack01 : Attack02;
+    
+            animator.SetTrigger(attackTrigger);
+            StartCoroutine(AttackPlayer());
         }
 
         animator.SetInteger(State, (int)state);
@@ -85,5 +108,38 @@ public class Enemy03 : MonoBehaviour
         _rb.isKinematic = true;
         enabled = false;
         _col.enabled = false;
+    }
+    
+    private void OnDrawGizmosSelected()
+    {
+        if (attackPoint == null)
+            return;
+        
+        Gizmos.DrawWireSphere(attackPoint.position, attackRange);
+    }
+    
+
+    private IEnumerator AttackPlayer()
+    {
+        yield return new WaitForSeconds(1.0f); // Delay the attack by 1 second
+
+        // Check if the player is within range
+        Collider2D[] hitColliders = Physics2D.OverlapCircleAll(attackPoint.position, attackRange);
+        foreach (Collider2D hitCollider in hitColliders)
+        {
+            if (hitCollider.gameObject.CompareTag("Player"))
+            {
+                // Reduce player's health
+                //hitCollider.gameObject.GetComponent<PlayerLife>().Die();
+
+                // Apply knockback force to the player
+                Vector2 knockbackDirection = hitCollider.transform.position - transform.position;
+                knockbackDirection.Normalize();
+                hitCollider.gameObject.GetComponent<Rigidbody2D>().AddForce(knockbackDirection * 0.1f, ForceMode2D.Impulse);
+            }
+        }
+
+        yield return new WaitForSeconds(3.0f); // Wait for 3 seconds before attacking again
+        isAttacking = false; // Reset the flag after attacking
     }
 }

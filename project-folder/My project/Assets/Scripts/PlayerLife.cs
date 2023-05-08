@@ -27,7 +27,7 @@ public class PlayerLife : MonoBehaviour
         }
     }
 
-    private void Die()
+    public void Die()
     {
         _pm.enabled = false;
         _rb.bodyType = RigidbodyType2D.Static;
