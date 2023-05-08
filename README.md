@@ -18,7 +18,9 @@ https://assetstore.unity.com/packages/2d/characters/monsters-creatures-fantasy-1
 BG Music:\
 https://assetstore.unity.com/packages/audio/ambient/nature/nature-essentials-208227 \
 Effects:\
-https://assetstore.unity.com/packages/audio/sound-fx/rpg-essentials-sound-effects-free-227708
+https://assetstore.unity.com/packages/audio/sound-fx/rpg-essentials-sound-effects-free-227708 \
+A star pathfinding:\
+https://arongranberg.com/astar/ \
 
 Tutorials & Guides followed:\
 2d Player Movement:\
