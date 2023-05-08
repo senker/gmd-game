@@ -8,7 +8,13 @@ https://assetstore.unity.com/packages/2d/environments/pixel-art-platformer-villa
 Medieval Warrior Pack 2 (Character)\
 https://assetstore.unity.com/packages/2d/characters/medieval-warrior-pack-2-174788 \
 Free Pixel Art Forest (Background)\
-https://assetstore.unity.com/packages/2d/textures-materials/nature/free-pixel-art-forest-133112 
+https://assetstore.unity.com/packages/2d/textures-materials/nature/free-pixel-art-forest-133112 \
+Bringer Of Death\
+https://assetstore.unity.com/packages/2d/characters/bringer-of-death-free-195719 \
+Princess\
+https://assetstore.unity.com/packages/2d/characters/2d-animated-fantasy-knight-dragon-and-princess-pack-35605
+Monsters_Creatures_Fantasy\
+https://assetstore.unity.com/packages/2d/characters/monsters-creatures-fantasy-167949
 
 Tutorials & Guides followed:\
 2d Player Movement:\
