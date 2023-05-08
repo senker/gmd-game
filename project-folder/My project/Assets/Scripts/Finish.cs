@@ -17,7 +17,7 @@ public class Finish : MonoBehaviour
         if (col.gameObject.name == "Player")
         {
             finishSound.Play();
-            CompleteLevel();
+            Invoke("CompleteLevel", 2f);
         }
     }
 

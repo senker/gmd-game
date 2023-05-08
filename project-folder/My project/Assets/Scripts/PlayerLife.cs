@@ -9,6 +9,7 @@ public class PlayerLife : MonoBehaviour
     private Rigidbody2D _rb;
     private Animator _anim;
     private PlayerMovement _pm;
+    public PlayerCombat target;
     [SerializeField] private AudioSource deathSoundEffect;
 
     private static readonly int Death = Animator.StringToHash("Death");
@@ -34,6 +35,7 @@ public class PlayerLife : MonoBehaviour
         _rb.bodyType = RigidbodyType2D.Static;
         _anim.SetTrigger(Death);
         deathSoundEffect.Play();
+        target.enabled = false;
     }
 
     private void RestartLevel()

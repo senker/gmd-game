@@ -608,7 +608,6 @@ MonoBehaviour:
   animator: {fileID: 53261790}
   attackPoint: {fileID: 1862944457}
   attackRange: 0.5
-  attackDamage: 40
   enemyDieSoundEffect: {fileID: 53261794}
   knockbackForce: 155
   maxHealth: 150
@@ -4490,7 +4489,6 @@ MonoBehaviour:
   animator: {fileID: 981048832}
   attackPoint: {fileID: 1256808823}
   attackRange: 1
-  attackDamage: 40
   enemyDieSoundEffect: {fileID: 981048836}
   knockbackForce: 111
   maxHealth: 400
@@ -4929,7 +4927,7 @@ GameObject:
   - component: {fileID: 1057293372}
   m_Layer: 7
   m_Name: Enemy02
-  m_TagString: Untagged
+  m_TagString: Trap
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -6305,6 +6303,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0ea1cf6681fb73248b1a723fff2e957f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  target: {fileID: 1302948432}
   deathSoundEffect: {fileID: 1302948435}
 --- !u!82 &1302948434
 AudioSource:
