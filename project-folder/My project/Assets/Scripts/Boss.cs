@@ -26,8 +26,9 @@ public class Boss : MonoBehaviour
     private static readonly int State = Animator.StringToHash("state");
     private static readonly int Attack01 = Animator.StringToHash("Attack1");
     private static readonly int Attack02 = Animator.StringToHash("Attack2");
-    
-    
+    private IEnumerator _playerAttackRoutine;
+
+
     private enum MovementState { Idle, Running }
     
     private void Update()
@@ -53,18 +54,9 @@ public class Boss : MonoBehaviour
 
         if (Vector2.Distance(transform.position, player.transform.position) <= attackRange && !isAttacking)
         {
-            // Attack the player
-            isAttacking = true; // Set the flag to true before attacking
-            if (_currentHealth >= 200)
-            {
-                animator.SetTrigger(Attack01);
-            }
-            else
-            {
-                animator.SetTrigger(Attack02);
-
-            }
-            StartCoroutine(AttackPlayer());
+            isAttacking = true;
+            animator.SetTrigger(_currentHealth >= 200 ? Attack01 : Attack02);
+            StartCoroutine(_playerAttackRoutine);
         }
 
         animator.SetInteger(State, (int)state);
@@ -75,6 +67,7 @@ public class Boss : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        _playerAttackRoutine = AttackPlayer();
         _rb = GetComponent<Rigidbody2D>();
         _col = GetComponent<Collider2D>();
         _currentHealth = maxHealth;

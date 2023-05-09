@@ -81,12 +81,12 @@ public class PlayerCombat : MonoBehaviour
         hitSoundEffect.Play();
     }
 
+    // ReSharper disable Unity.PerformanceAnalysis
     private void AttackEnemy()
     {
         Collider2D[] hitEnemies = Physics2D.OverlapCircleAll(attackPoint.position, attackRange, enemyLayers);
         foreach (Collider2D enemy in hitEnemies)
         {
-            Debug.Log("We hit " + enemy.name);
             Enemy enemyComponent = enemy.GetComponent<Enemy>();
             if (enemyComponent != null)
             {
